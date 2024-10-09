@@ -6,6 +6,7 @@ package xml
 
 import (
 	"fmt"
+	"math"
 	"reflect"
 	"strings"
 	"sync"
@@ -274,7 +275,7 @@ Loop:
 		if oldf.xmlns != "" && newf.xmlns != "" && oldf.xmlns != newf.xmlns {
 			continue
 		}
-		minl := min(len(newf.parents), len(oldf.parents))
+		minl := int(math.Min(float64(len(newf.parents)), float64(len(oldf.parents))))
 		for p := 0; p < minl; p++ {
 			if oldf.parents[p] != newf.parents[p] {
 				continue Loop
